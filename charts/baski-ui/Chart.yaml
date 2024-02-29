@@ -1,0 +1,18 @@
+apiVersion: v2
+name: baski-ui
+description: Deploys Baski UI
+type: application
+version: 0.0.0
+appVersion: "0.0.0"
+maintainers:
+  - name: drew-viles
+    email: "drew@hudson-viles.uk"
+
+keywords:
+  - dogkat
+  - end-2-end
+  - high-availability
+  - ingress
+  - storage
+sources:
+  - https://github.com/drewbernetes/baski-ui/tree/main/charts/baski-ui

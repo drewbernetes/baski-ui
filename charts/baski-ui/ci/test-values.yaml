@@ -1,0 +1,30 @@
+image:
+  repository: "ghcr.io/drewbernetes/baski-ui"
+  tag: "0.0.0"
+
+imagePullSecrets: []
+
+service:
+  type: ClusterIP
+  port: 3000
+
+ingress:
+  enabled: false
+  className: "nginx"
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/auth-realm: Authentication Required
+    nginx.ingress.kubernetes.io/auth-secret: alerts-basic-auth
+    nginx.ingress.kubernetes.io/auth-type: basic
+  hosts:
+    - host: baski-ui.example.dev
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: baski-ui-tls
+      hosts:
+        - baski-ui.example.dev
+
+baskiServer:
+  endpoint: "http://baski-server.baski-server.svc"
